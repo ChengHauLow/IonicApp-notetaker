@@ -1,0 +1,19 @@
+#inbox-area{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#open-toast{
+    width: 50%;
+    margin: 10px auto;
+}
+
+@media screen and (max-width: 768px) {
+    #open-toast{
+        width: 90%;
+    }
+}
