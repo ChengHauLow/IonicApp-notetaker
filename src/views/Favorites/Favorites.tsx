@@ -1,4 +1,4 @@
-import { IonContent, IonGrid, IonCol, IonRow, IonModal, IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonInput, IonItem, IonPopover} from '@ionic/react';
+import { IonContent, IonGrid, IonCol, IonRow, IonModal, IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonInput, IonItem, IonPopover, IonDatetime} from '@ionic/react';
 import './Favorites.css'
 import { useRef, useState } from 'react';
 import { OverlayEventDetail } from '@ionic/react/dist/types/components/react-component-lib/interfaces';
@@ -20,6 +20,16 @@ const Favorites = () => {
       setMessage(`Hello, ${ev.detail.data}!`);
     }
   }
+  const isWeekday = (dateString: string) => {
+    const date = new Date(dateString);
+    const utcDay = date.getUTCDay();
+
+    /**
+     * Date will be enabled if it is not
+     * Sunday or Saturday
+     */
+    return utcDay !== 0 && utcDay !== 6;
+  };
   return (
     <IonContent id='favorites-area'>
         <IonGrid>
@@ -47,6 +57,10 @@ const Favorites = () => {
         <IonPopover trigger="hover-trigger" triggerAction="hover">
           <IonContent class="ion-padding">Hello World!</IonContent>
         </IonPopover>
+        <IonDatetime isDateEnabled={isWeekday} locale="en-GB-u-hc-h12" value="2022-04-21T00:00:00" min="2022-03-01T00:00:00" max="2022-05-31T23:59:59"></IonDatetime>
+        <IonDatetime presentation="date"></IonDatetime>
+        <IonDatetime presentation="month-year"></IonDatetime>
+        <IonDatetime presentation="time"></IonDatetime>
         <IonModal ref={modal} trigger="open-modal" onWillDismiss={(ev) => onWillDismiss(ev)}>
           <IonHeader>
             <IonToolbar>
